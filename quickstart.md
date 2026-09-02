@@ -7,7 +7,7 @@ description: Track your first commitment in under 5 minutes.
 
 ## 1. Get your API key
 
-Sign in at [app.cogextai.com](https://app.cogextai.com) and copy your API key from **Settings → API Keys → Create new key**. It starts with `cg_live_`.
+Sign in at [cogextai.com](https://cogextai.com) and copy your API key from **Settings → API Keys → Create new key**. It starts with `cg_live_`.
 
 ## 2. Send your first commitment
 

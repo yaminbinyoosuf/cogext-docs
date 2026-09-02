@@ -1,6 +1,6 @@
 ---
 title: Commitments
-description: The core data model — what COGEXT extracts from text.
+description: The core data model: what COGEXT extracts from text.
 ---
 
 # Commitments
@@ -12,7 +12,7 @@ A commitment is a promise, obligation, or task extracted from unstructured text.
 | Field | Description | Example |
 |-------|-------------|---------|
 | `id` | Unique commitment ID | `cmt_abc123` |
-| `action` | The verb — what will be done | `send`, `schedule`, `review` |
+| `action` | The verb: what will be done | `send`, `schedule`, `review` |
 | `object` | What the action applies to | `the report`, `a meeting`, `your PR` |
 | `recipient` | Who the commitment is made to | `you`, `the team`, `Sarah` |
 | `deadline_raw` | Deadline as expressed in source text | `by Friday`, `end of month` |
@@ -50,9 +50,9 @@ Extracted commitment:
 
 | Range | Interpretation |
 |-------|---------------|
-| `0.85–1.00` | High confidence — clear commitment |
-| `0.60–0.84` | Medium confidence — likely a commitment |
-| `< 0.60` | Low confidence — ambiguous, may need human review |
+| `0.85–1.00` | High confidence: clear commitment |
+| `0.60–0.84` | Medium confidence: likely a commitment |
+| `< 0.60` | Low confidence: ambiguous, may need human review |
 
 Scores below `0.60` trigger a `PENDING_REVIEW` state by default. You can configure this threshold per workspace.
 

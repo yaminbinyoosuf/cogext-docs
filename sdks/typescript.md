@@ -149,7 +149,7 @@ try {
   if (err instanceof AuthenticationError) {
     console.error("Invalid API key");
   } else if (err instanceof RateLimitError) {
-    console.error(`Rate limited — retry after ${err.retryAfter}s`);
+    console.error(`Rate limited: retry after ${err.retryAfter}s`);
   } else if (err instanceof NotFoundError) {
     console.error("Not found");
   } else if (err instanceof CogextError) {

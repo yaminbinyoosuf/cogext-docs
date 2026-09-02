@@ -60,4 +60,4 @@ curl -X POST https://api.cogextai.com/api/v1/commitments/track \
 
 - A single text may return multiple commitments if multiple promises are detected.
 - Commitments with `confidence < 0.60` start in `PENDING_REVIEW` rather than `OPEN`.
-- Duplicate `source_id` submissions are idempotent — the same commitment is returned without re-extracting.
+- Duplicate `source_id` submissions are idempotent: the same commitment is returned without re-extracting.

@@ -103,7 +103,7 @@ try:
 except AuthenticationError:
     print("Invalid or missing API key")
 except RateLimitError as e:
-    print(f"Rate limited — retry after {e.retry_after}s")
+    print(f"Rate limited: retry after {e.retry_after}s")
 except NotFoundError:
     print("Commitment not found")
 except CogextError as e:

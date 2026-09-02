@@ -27,7 +27,7 @@ curl "https://api.cogextai.com/api/v1/commitments?state=OVERDUE&limit=20" \
 | `confidence_min` | float | Minimum confidence score (0–1) |
 | `deadline_before` | ISO 8601 | Filter commitments due before this date |
 | `deadline_after` | ISO 8601 | Filter commitments due after this date |
-| `limit` | integer | Results per page — default `20`, max `100` |
+| `limit` | integer | Results per page: default `20`, max `100` |
 | `offset` | integer | Pagination offset |
 
 ## Response

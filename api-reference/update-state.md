@@ -7,7 +7,7 @@ description: Manually set a commitment to a specific state.
 
 <span class="method-post">POST</span> `https://api.cogextai.com/api/v1/commitments/{id}/state`
 
-Manually force a commitment into a specific state. Use this when you have out-of-band information that isn't in text form — e.g., a human reviewer confirms or rejects a commitment.
+Manually force a commitment into a specific state. Use this when you have out-of-band information that isn't in text form: e.g., a human reviewer confirms or rejects a commitment.
 
 ## Request
 
@@ -42,7 +42,7 @@ curl -X POST https://api.cogextai.com/api/v1/commitments/cmt_abc123/state \
 | `FULFILLED` | Mark as done without text evidence |
 | `FAILED` | Mark as failed without text evidence |
 | `CANCELLED` | The commitment was withdrawn |
-| `BLOCKED` | Cannot proceed — waiting on a dependency |
+| `BLOCKED` | Cannot proceed: waiting on a dependency |
 | `SUPERSEDED` | Replaced by a new commitment |
 
 ## Response

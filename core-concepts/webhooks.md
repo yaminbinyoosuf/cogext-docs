@@ -59,7 +59,7 @@ Use `"events": ["*"]` to subscribe to all event types.
 
 ## Verifying signatures
 
-Every webhook includes an `X-Cogext-Signature` header — an HMAC-SHA256 signature of the raw request body using your webhook secret. **Always verify this before processing.**
+Every webhook includes an `X-Cogext-Signature` header: an HMAC-SHA256 signature of the raw request body using your webhook secret. **Always verify this before processing.**
 
 ```python
 import hmac
@@ -101,7 +101,7 @@ COGEXT retries failed deliveries (non-2xx responses or timeouts) with exponentia
 | 4th retry | 1 hour |
 | 5th retry | 6 hours |
 
-After 5 failed attempts, the event is dropped. Return a `200` status immediately upon receipt — process the event asynchronously if needed.
+After 5 failed attempts, the event is dropped. Return a `200` status immediately upon receipt: process the event asynchronously if needed.
 
 ## Idempotency
 

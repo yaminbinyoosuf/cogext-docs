@@ -13,11 +13,11 @@ All requests to the COGEXT API must include your API key as a Bearer token in th
 Authorization: Bearer cg_live_YOUR_KEY
 ```
 
-Keys starting with `cg_live_` are production keys. Keep them secret — never commit them to source control or expose them client-side.
+Keys starting with `cg_live_` are production keys. Keep them secret: never commit them to source control or expose them client-side.
 
 ## Getting a key
 
-Sign in at [app.cogextai.com](https://app.cogextai.com) → **Settings → API Keys → Create new key**.
+Sign in at [cogextai.com](https://cogextai.com) → **Settings → API Keys → Create new key**.
 
 ## Example request
 
@@ -32,7 +32,7 @@ curl https://api.cogextai.com/api/v1/commitments \
 |------|---------|
 | `401` | Missing or invalid API key |
 | `403` | Valid key but insufficient permissions |
-| `429` | Rate limit exceeded — back off and retry |
+| `429` | Rate limit exceeded: back off and retry |
 
 ## Rate limits
 

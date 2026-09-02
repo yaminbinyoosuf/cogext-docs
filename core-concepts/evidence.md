@@ -9,7 +9,7 @@ description: Submit signals that confirm or deny commitment fulfillment.
 
 Evidence is a signal you submit that indicates a commitment was or was not fulfilled. COGEXT uses evidence to automatically transition commitments toward `FULFILLED`, `FAILED`, or `CONTRADICTED`.
 
-You typically submit evidence when you detect a follow-up message in the same thread — e.g., "Here's the report I promised" or "Sorry, we can't deliver this anymore."
+You typically submit evidence when you detect a follow-up message in the same thread: e.g., "Here's the report I promised" or "Sorry, we can't deliver this anymore."
 
 ## Evidence types
 

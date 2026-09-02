@@ -24,17 +24,17 @@ DETECTED → PENDING_REVIEW → OPEN → DUE → OVERDUE │
 
 | State | Meaning |
 |-------|---------|
-| `DETECTED` | Just extracted from text — not yet validated |
+| `DETECTED` | Just extracted from text: not yet validated |
 | `PENDING_REVIEW` | Flagged for human review before activation (low confidence or policy rule) |
-| `OPEN` | Active — deadline is in the future |
+| `OPEN` | Active: deadline is in the future |
 | `DUE` | Deadline has been reached, awaiting fulfillment signal |
 | `OVERDUE` | Past deadline with no fulfillment evidence |
 | `FULFILLED` | Evidence confirms the commitment was met |
-| `FAILED` | Commitment was not met — evidence of failure or explicit update |
+| `FAILED` | Commitment was not met: evidence of failure or explicit update |
 | `CONTRADICTED` | Prior fulfillment claim contradicted by new evidence |
 | `CANCELLED` | Explicitly cancelled by the commitment maker |
 | `SUPERSEDED` | Replaced by a newer commitment (e.g. deadline moved) |
-| `BLOCKED` | Cannot proceed — external dependency unresolved |
+| `BLOCKED` | Cannot proceed: external dependency unresolved |
 | `EXPIRED` | Timed out with no resolution after the overdue window |
 
 ## Transitions
