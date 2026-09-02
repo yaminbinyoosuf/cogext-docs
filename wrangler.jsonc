@@ -5,5 +5,11 @@
   "observability": { "enabled": true },
   "assets": {
     "directory": ".vitepress/dist"
-  }
+  },
+  "routes": [
+    {
+      "pattern": "docs.cogextai.com/*",
+      "zone_name": "cogextai.com"
+    }
+  ]
 }
