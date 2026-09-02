@@ -1,0 +1,100 @@
+---
+title: "TypeScript SDK"
+description: "Install and use the COGEXT TypeScript/JavaScript client."
+---
+
+## Installation
+
+```bash
+npm install @cogext/sdk
+# or
+yarn add @cogext/sdk
+```
+
+## Setup
+
+```typescript
+import { Cogext } from "@cogext/sdk";
+
+const client = new Cogext({ apiKey: "cg_live_YOUR_KEY" });
+```
+
+## Track commitments
+
+```typescript
+const result = await client.commitments.track({
+  text: "I will send the proposal by Monday.",
+  source: "email",
+  sourceId: "msg_001",
+});
+
+for (const commitment of result.commitments) {
+  console.log(commitment.id, commitment.state, commitment.deadlineNormalizedUtc);
+}
+```
+
+## Get a commitment
+
+```typescript
+const commitment = await client.commitments.get("cmt_abc123");
+console.log(commitment.state);
+```
+
+## List commitments
+
+```typescript
+const overdue = await client.commitments.list({ state: "OVERDUE", limit: 50 });
+for (const c of overdue.commitments) {
+  console.log(c.id, c.action, c.object);
+}
+```
+
+## Add evidence
+
+```typescript
+const updated = await client.commitments.addEvidence("cmt_abc123", {
+  type: "fulfillment",
+  text: "Proposal sent as attached.",
+  source: "email",
+  sourceId: "msg_002",
+});
+console.log(updated.state); // FULFILLED
+```
+
+## Update state
+
+```typescript
+await client.commitments.updateState("cmt_abc123", {
+  state: "CANCELLED",
+  reason: "Project cancelled.",
+});
+```
+
+## TypeScript types
+
+```typescript
+import type {
+  Commitment,
+  CommitmentState,
+  TrackResult,
+  Evidence,
+} from "@cogext/sdk";
+```
+
+## Error handling
+
+```typescript
+import { CogextError, AuthenticationError, RateLimitError } from "@cogext/sdk";
+
+try {
+  const result = await client.commitments.track({ text: "..." });
+} catch (err) {
+  if (err instanceof AuthenticationError) {
+    console.error("Invalid API key");
+  } else if (err instanceof RateLimitError) {
+    console.error("Rate limited");
+  } else if (err instanceof CogextError) {
+    console.error(`API error ${err.statusCode}: ${err.message}`);
+  }
+}
+```

@@ -1,0 +1,36 @@
+---
+title: "Evidence"
+description: "Submit signals that confirm or deny commitment fulfillment."
+---
+
+## What is evidence?
+
+Evidence is a signal you submit that indicates a commitment was or was not fulfilled. COGEXT uses evidence to transition commitments toward `FULFILLED`, `FAILED`, or `CONTRADICTED`.
+
+## Evidence types
+
+| Type | Description |
+|------|-------------|
+| `fulfillment` | Confirms the commitment was met |
+| `contradiction` | Indicates the commitment was not met |
+| `update` | Provides context without changing state |
+
+## Submitting evidence
+
+```bash
+curl -X POST https://api.cogextai.com/api/v1/commitments/cmt_abc123/evidence \
+  -H "Authorization: Bearer cg_live_YOUR_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "type": "fulfillment",
+    "text": "Attached the contract draft as promised.",
+    "source": "email",
+    "source_id": "msg_002"
+  }'
+```
+
+## How evidence affects state
+
+- `fulfillment` evidence → commitment moves to `FULFILLED`
+- `contradiction` evidence on a `FULFILLED` commitment → moves to `CONTRADICTED`
+- `contradiction` evidence on an `OPEN` commitment → moves to `FAILED`

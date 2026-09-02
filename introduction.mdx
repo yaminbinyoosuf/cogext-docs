@@ -1,0 +1,37 @@
+---
+title: "Introduction"
+description: "COGEXT tracks commitments made in conversations and monitors whether they are fulfilled."
+---
+
+## What is COGEXT?
+
+COGEXT is a commitment intelligence API. It detects promises, obligations, and commitments made in text — emails, Slack messages, call transcripts, support tickets — and tracks them through their full lifecycle until they are fulfilled, failed, or cancelled.
+
+<CardGroup cols={2}>
+  <Card title="Quickstart" icon="rocket" href="/quickstart">
+    Send your first commitment in under 5 minutes
+  </Card>
+  <Card title="API Reference" icon="code" href="/api-reference/track">
+    Full endpoint documentation
+  </Card>
+  <Card title="Core Concepts" icon="book" href="/core-concepts/commitments">
+    Understand the commitment model
+  </Card>
+  <Card title="SDKs" icon="brackets-curly" href="/sdks/python">
+    Python and TypeScript libraries
+  </Card>
+</CardGroup>
+
+## How it works
+
+1. **Detect** — Send any text to the  endpoint. COGEXT extracts all commitments it finds.
+2. **Monitor** — Each commitment moves through a 12-state lifecycle (DETECTED → OPEN → DUE → FULFILLED).
+3. **Alert** — Receive webhook events when commitments change state, go overdue, or need attention.
+
+## Key capabilities
+
+- Extract commitments from unstructured text with high confidence scoring
+- Normalize deadlines to UTC regardless of how they were expressed
+- Track evidence for or against fulfillment
+- Receive real-time webhook events on state transitions
+- Filter and query commitments by state, recipient, deadline, and more

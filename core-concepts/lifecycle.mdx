@@ -1,0 +1,43 @@
+---
+title: "Lifecycle"
+description: "The 12 states a commitment moves through from detection to resolution."
+---
+
+## State diagram
+
+Every commitment starts at `DETECTED` and moves through states based on time elapsed and evidence submitted.
+
+```
+DETECTED → PENDING_REVIEW → OPEN → DUE → OVERDUE
+                                      ↓
+                         FULFILLED / FAILED / CONTRADICTED
+                         CANCELLED / SUPERSEDED / BLOCKED / EXPIRED
+```
+
+## States
+
+| State | Meaning |
+|-------|---------|
+| `DETECTED` | Just extracted, not yet validated |
+| `PENDING_REVIEW` | Flagged for human review before activation |
+| `OPEN` | Active — deadline in the future |
+| `DUE` | Deadline reached, awaiting fulfillment signal |
+| `OVERDUE` | Past deadline with no fulfillment evidence |
+| `FULFILLED` | Evidence confirms the commitment was met |
+| `FAILED` | Commitment was not met |
+| `CONTRADICTED` | Evidence contradicts a prior fulfillment claim |
+| `CANCELLED` | Explicitly cancelled by the maker |
+| `SUPERSEDED` | Replaced by a newer commitment |
+| `BLOCKED` | Cannot proceed — external dependency |
+| `EXPIRED` | Timed out with no resolution |
+
+## Transitions
+
+State transitions are triggered by:
+- **Time** — COGEXT automatically moves commitments from OPEN → DUE → OVERDUE
+- **Evidence** — Submitting evidence moves commitments toward FULFILLED or FAILED
+- **Manual update** — Use the state endpoint to force a specific state
+
+## Webhook events
+
+Each state transition fires a webhook event, e.g. `commitment.overdue`, `commitment.fulfilled`. See [Webhooks](/core-concepts/webhooks).

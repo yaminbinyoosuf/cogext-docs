@@ -1,0 +1,64 @@
+---
+title: "Webhooks"
+description: "Receive real-time events when commitment states change."
+---
+
+## Overview
+
+COGEXT sends HTTP POST requests to your webhook URL when commitment events occur. Events are delivered within seconds of a state change.
+
+## Registering a webhook
+
+```bash
+curl -X POST https://api.cogextai.com/api/v1/webhooks \
+  -H "Authorization: Bearer cg_live_YOUR_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "url": "https://yourapp.com/webhooks/cogext",
+    "events": ["commitment.overdue", "commitment.fulfilled", "commitment.failed"]
+  }'
+```
+
+## Event types
+
+| Event | Fired when |
+|-------|-----------|
+| `commitment.detected` | New commitment extracted |
+| `commitment.open` | Commitment activated |
+| `commitment.due` | Deadline reached |
+| `commitment.overdue` | Past deadline, unfulfilled |
+| `commitment.fulfilled` | Evidence confirms fulfillment |
+| `commitment.failed` | Commitment marked failed |
+| `commitment.cancelled` | Commitment cancelled |
+
+## Payload
+
+```json
+{
+  "event": "commitment.overdue",
+  "timestamp": "2024-01-20T10:00:00Z",
+  "commitment": {
+    "id": "cmt_abc123",
+    "action": "send",
+    "object": "the report",
+    "state": "OVERDUE",
+    "deadline_normalized_utc": "2024-01-19T23:59:59Z"
+  }
+}
+```
+
+## Verifying signatures
+
+Every webhook request includes an `X-Cogext-Signature` header — an HMAC-SHA256 signature of the raw request body using your webhook secret.
+
+```python
+import hmac, hashlib
+
+def verify(secret: str, payload: bytes, signature: str) -> bool:
+    expected = hmac.new(secret.encode(), payload, hashlib.sha256).hexdigest()
+    return hmac.compare_digest(expected, signature)
+```
+
+## Retries
+
+COGEXT retries failed webhook deliveries up to 5 times with exponential backoff. Return a `2xx` status to acknowledge receipt.

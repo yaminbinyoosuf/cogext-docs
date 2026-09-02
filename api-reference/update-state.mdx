@@ -1,0 +1,44 @@
+---
+title: "Update State"
+description: "Manually set a commitment to a specific state."
+api: "POST https://api.cogextai.com/api/v1/commitments/{id}/state"
+---
+
+## Request
+
+```bash
+curl -X POST https://api.cogextai.com/api/v1/commitments/cmt_abc123/state \
+  -H "Authorization: Bearer cg_live_YOUR_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "state": "CANCELLED",
+    "reason": "Project was deprioritised."
+  }'
+```
+
+### Path parameters
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `id` | string | The commitment ID |
+
+### Body parameters
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `state` | string | Yes | Target state |
+| `reason` | string | No | Optional reason for the transition |
+
+### Valid target states
+
+`OPEN`, `FULFILLED`, `FAILED`, `CANCELLED`, `BLOCKED`, `SUPERSEDED`
+
+## Response
+
+```json
+{
+  "id": "cmt_abc123",
+  "state": "CANCELLED",
+  "updated_at": "2024-01-20T10:00:00Z"
+}
+```

@@ -1,0 +1,51 @@
+---
+title: "Track Commitments"
+description: "Extract commitments from unstructured text."
+api: "POST https://api.cogextai.com/api/v1/commitments/track"
+---
+
+## Request
+
+```bash
+curl -X POST https://api.cogextai.com/api/v1/commitments/track \
+  -H "Authorization: Bearer cg_live_YOUR_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "text": "I will send the report by Friday EOD.",
+    "source": "email",
+    "source_id": "msg_001",
+    "metadata": {}
+  }'
+```
+
+### Body parameters
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `text` | string | Yes | The text to extract commitments from |
+| `source` | string | No | Source type: `email`, `slack`, `transcript`, `ticket` |
+| `source_id` | string | No | Your identifier for the source message |
+| `metadata` | object | No | Arbitrary key-value pairs attached to all extracted commitments |
+
+## Response
+
+```json
+{
+  "commitments": [
+    {
+      "id": "cmt_abc123",
+      "action": "send",
+      "object": "the report",
+      "recipient": null,
+      "deadline_raw": "by Friday EOD",
+      "deadline_normalized_utc": "2024-01-19T23:59:59Z",
+      "confidence": 0.97,
+      "state": "OPEN",
+      "source": "email",
+      "source_id": "msg_001",
+      "created_at": "2024-01-15T09:00:00Z"
+    }
+  ],
+  "count": 1
+}
+```

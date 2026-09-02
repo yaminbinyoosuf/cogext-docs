@@ -1,0 +1,65 @@
+---
+title: "Quickstart"
+description: "Track your first commitment in under 5 minutes."
+---
+
+## Get your API key
+
+Sign in at [app.cogextai.com](https://app.cogextai.com) and copy your API key from the dashboard. It starts with `cg_live_`.
+
+## Send your first commitment
+
+```bash
+curl -X POST https://api.cogextai.com/api/v1/commitments/track \
+  -H "Authorization: Bearer cg_live_YOUR_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "text": "I will send you the report by Friday.",
+    "source": "email",
+    "source_id": "msg_001"
+  }'
+```
+
+## Read the response
+
+```json
+{
+  "commitments": [
+    {
+      "id": "cmt_abc123",
+      "action": "send",
+      "object": "the report",
+      "recipient": "you",
+      "deadline_raw": "by Friday",
+      "deadline_normalized_utc": "2024-01-19T23:59:59Z",
+      "confidence": 0.97,
+      "state": "OPEN"
+    }
+  ]
+}
+```
+
+## Check its state
+
+```bash
+curl https://api.cogextai.com/api/v1/commitments/cmt_abc123 \
+  -H "Authorization: Bearer cg_live_YOUR_KEY"
+```
+
+## Set up a webhook (optional)
+
+Receive real-time events when commitment states change:
+
+```bash
+curl -X POST https://api.cogextai.com/api/v1/webhooks \
+  -H "Authorization: Bearer cg_live_YOUR_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "url": "https://yourapp.com/webhooks/cogext",
+    "events": ["commitment.overdue", "commitment.fulfilled"]
+  }'
+```
+
+<Check>
+  You have successfully tracked your first commitment. Next, learn about the [commitment lifecycle](/core-concepts/lifecycle).
+</Check>

@@ -1,0 +1,67 @@
+{
+  "$schema": "https://mintlify.com/schema.json",
+  "name": "COGEXT",
+  "logo": {
+    "dark": "/logo/logo-dark.png",
+    "light": "/logo/logo-light.png"
+  },
+  "favicon": "/logo/favicon.png",
+  "colors": {
+    "primary": "#6366F1",
+    "light": "#818CF8",
+    "dark": "#4F46E5",
+    "background": {
+      "dark": "#07080B",
+      "light": "#F8F9FB"
+    }
+  },
+  "topbarLinks": [
+    {
+      "name": "Dashboard",
+      "url": "https://app.cogextai.com"
+    }
+  ],
+  "topbarCtaButton": {
+    "name": "Get API Key",
+    "url": "https://app.cogextai.com"
+  },
+  "navigation": [
+    {
+      "group": "Getting Started",
+      "pages": [
+        "introduction",
+        "quickstart",
+        "authentication"
+      ]
+    },
+    {
+      "group": "Core Concepts",
+      "pages": [
+        "core-concepts/commitments",
+        "core-concepts/lifecycle",
+        "core-concepts/evidence",
+        "core-concepts/webhooks"
+      ]
+    },
+    {
+      "group": "API Reference",
+      "pages": [
+        "api-reference/track",
+        "api-reference/get-commitment",
+        "api-reference/list-commitments",
+        "api-reference/add-evidence",
+        "api-reference/update-state"
+      ]
+    },
+    {
+      "group": "SDKs",
+      "pages": [
+        "sdks/python",
+        "sdks/typescript"
+      ]
+    }
+  ],
+  "footerSocials": {
+    "website": "https://cogextai.com"
+  }
+}
