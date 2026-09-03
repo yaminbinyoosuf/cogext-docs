@@ -17,7 +17,7 @@ Keys starting with `cg_live_` are production keys. Keep them secret: never commi
 
 ## Getting a key
 
-Sign in at [cogextai.com](https://cogextai.com) → **Settings → API Keys → Create new key**.
+Sign in at [cogextai.com](https://cogextai.com) and go to **Settings > API Keys > Create new key**.
 
 ## Example request
 

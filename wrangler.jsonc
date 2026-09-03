@@ -9,7 +9,7 @@
   "routes": [
     {
       "pattern": "docs.cogextai.com/*",
-      "zone_name": "cogextai.com"
+      "zone_id": "32ee92f2ed10b98265b60129a14af343"
     }
   ]
 }

@@ -1,6 +1,6 @@
 ---
 title: Commitments
-description: The core data model: what COGEXT extracts from text.
+description: "The core data model: what COGEXT extracts from text."
 ---
 
 # Commitments
