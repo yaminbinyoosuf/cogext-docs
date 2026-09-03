@@ -18,10 +18,10 @@ export default defineConfig({
 
     nav: [
       { text: 'Docs', link: '/' },
-      { text: 'Dashboard', link: 'https://app.cogextai.com' },
+      { text: 'Dashboard', link: 'https://cogextai.com/portal' },
       {
         text: 'Get API Key',
-        link: 'https://app.cogextai.com',
+        link: 'https://cogextai.com',
         activeMatch: '^/$',
       },
     ],
