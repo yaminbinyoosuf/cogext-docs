@@ -1,54 +1,55 @@
 ---
 title: Introduction
-description: COGEXT tracks commitments made in conversations and monitors whether they are fulfilled.
+description: The accountability layer for machine intelligence. COGEXT tracks every commitment AI agents make and verifies whether they are kept.
 ---
 
 # Introduction
 
-COGEXT is a commitment intelligence API. It detects promises, obligations, and commitments made in text (emails, Slack messages, agent outputs, call transcripts, support tickets) and tracks them through their full lifecycle until they are fulfilled, failed, or cancelled.
+COGEXT is the accountability layer for machine intelligence. It detects promises, obligations, and commitments made in text — agent outputs, emails, Slack messages, call transcripts — and tracks them through their full lifecycle until fulfilled, failed, or cancelled.
+
+Every commitment is a first-class object with a risk score, a verifier query, an evidence gate, and a tamper-evident audit receipt.
 
 ## How it works
 
-**1. Detect**: Send any text to the `/ingest` endpoint. COGEXT extracts all commitments it finds, classifies each by shape, generates a verifier query, resolves deadlines in the actor's local timezone, and assigns each commitment a unique ID.
+**1. Detect** — Send any text to `/ingest`. COGEXT extracts all commitments, classifies each by shape, scores risk, generates a verifier query, resolves deadlines in the actor's local timezone, and assigns a unique ID.
 
-**2. Route**: Each commitment is immediately routed to either `open` or `pending_review` based on its shape and confidence. External commitments (ones that cause real-world effects) always go to `pending_review` first — a human confirms before they go active.
+**2. Route** — Each commitment goes to `open` or `pending_review` based on shape and confidence. `external_side_effect` commitments always start as `pending_review` — a human or Kill Switch confirms before they go active.
 
-**3. Monitor**: Each commitment moves through a 12-state lifecycle automatically (`detected → open → due → overdue`). You don't manage timers: COGEXT does.
+**3. Monitor** — Each commitment moves through a 12-state lifecycle automatically (`detected → open → due → overdue`). You don't manage timers.
 
-**4. Verify**: When a commitment is fulfilled, COGEXT checks for evidence before accepting the transition. External commitments require a verified evidence score ≥ 0.7 — agents cannot self-report completion.
+**4. Verify** — When a commitment is fulfilled, COGEXT checks evidence before accepting the transition. External commitments require a verified evidence score ≥ 0.7 — agents cannot self-report completion.
 
-**5. Alert**: Receive webhook events the moment commitments change state, go overdue, or need human review.
+**5. Alert** — Receive webhook events the moment commitments change state, go overdue, contradict each other, or cross the risk threshold.
 
-## Key capabilities
+## v2.0 Capabilities
 
-- Extract commitments from unstructured text with confidence scoring (0–1)
-- Classify each commitment as `external_side_effect` or `logged_intent` — two different trust levels
-- Generate a `verifier_query` at extraction time: a plain-English description of how to independently confirm the commitment happened
-- Resolve deadlines in the actor's local timezone ("by EOD Friday" in IST resolves correctly, not as UTC)
-- Block fulfillment of external commitments without sufficient evidence (score ≥ 0.7)
-- Track evidence for or against fulfillment
-- Receive real-time HMAC-signed webhook events on all state transitions
-- Filter and query commitments by state, shape, source, recipient, and deadline
-- Python and TypeScript SDKs included
+| Feature | Description |
+|---|---|
+| **Contradiction Radar** | Automatically detects when a new commitment conflicts with a live one — same action, different object or recipient |
+| **Failure Predictor** | Scores every commitment across 5 risk factors at ingest; fires `risk.high` webhook at ≥ 0.70 |
+| **Public Audit Receipt** | HMAC-SHA256 receipt token for any commitment — share a URL to prove the record is authentic and untampered |
+| **Verifier Engine** | Evidence adapter system (Gmail, webhooks) scores relevance; auto-transitions to `fulfilled` at ≥ 0.70 |
+| **Kill Switch** | Every `external_side_effect` commitment triggers a Slack alert with Approve / Cancel buttons before execution proceeds |
 
 ## The core distinction: executed vs. planned
 
 Half of all agent failure modes come from not knowing whether something was **actually executed** or just **planned in the context window**.
 
-COGEXT solves this by classifying every commitment at extraction time:
+COGEXT classifies every commitment at extraction:
 
-- **`external_side_effect`** — the action left the agent's context and touched the real world: an email was sent, code was deployed, an API was called. These can be independently verified and require evidence before marking done.
-- **`logged_intent`** — the action is internal: a decision was recorded, a note was made, agent state was updated. These are complete when the agent says so.
+- **`external_side_effect`** — the action touches the real world: an email sent, code deployed, an API called. Requires independent evidence before marking done.
+- **`logged_intent`** — the action is internal: a decision recorded, a note made, agent state updated. Complete when the agent says so.
 
-This distinction is enforced at every step: routing, review, and fulfillment.
+This distinction is enforced at every step: routing, review, Kill Switch, and fulfillment.
 
 ## Where to go next
 
 | | |
 |---|---|
 | [Quickstart](/quickstart) | Track your first commitment in under 5 minutes |
-| [Commitments model](/core-concepts/commitments) | Fields, shapes, verifier queries, and timezone-aware deadlines |
+| [Commitments model](/core-concepts/commitments) | Fields, shapes, risk scores, verifier queries, deadlines |
 | [Lifecycle](/core-concepts/lifecycle) | The 12 states, routing logic, and evidence gate |
 | [Evidence](/core-concepts/evidence) | How to submit and score evidence |
+| [Audit Receipts](/core-concepts/audit-receipts) | HMAC-signed tamper-evident records |
 | [API Reference](/api-reference/track) | Full endpoint documentation |
 | [SDKs](/sdks/python) | Python and TypeScript libraries |
