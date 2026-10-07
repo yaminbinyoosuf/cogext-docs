@@ -16,13 +16,13 @@ Requires Python 3.8+.
 ## Setup
 
 ```python
-from cogext import Cogext
+from cogext import CogextClient
 
-client = Cogext(api_key="cg_live_YOUR_KEY")
+client = CogextClient(api_key="cg_live_YOUR_KEY")
 
 # Or use an environment variable:
 # export COGEXT_API_KEY=cg_live_YOUR_KEY
-client = Cogext()
+client = CogextClient()
 ```
 
 ## Track commitments
@@ -81,10 +81,10 @@ client.commitments.update_state(
 
 ```python
 import asyncio
-from cogext import AsyncCogext
+from cogext import CogextClient
 
 async def main():
-    client = AsyncCogext(api_key="cg_live_YOUR_KEY")
+    client = CogextClient(api_key="cg_live_YOUR_KEY")
     result = await client.commitments.track(
         text="I'll have this reviewed by Wednesday."
     )
@@ -113,7 +113,7 @@ except CogextError as e:
 ## Configuration
 
 ```python
-client = Cogext(
+client = CogextClient(
     api_key="cg_live_YOUR_KEY",
     base_url="https://api.cogextai.com/api/v1",  # default
     timeout=30,       # seconds
