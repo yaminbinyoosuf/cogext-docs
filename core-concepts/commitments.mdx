@@ -12,8 +12,8 @@ A commitment is a promise, obligation, or task extracted from unstructured text.
 | `action` | The verb — what will be done | `send`, `schedule`, `review` |
 | `object` | What the action applies to | `the report`, `a meeting`, `your PR` |
 | `recipient` | Who the commitment is made to | `you`, `the team`, `Sarah` |
-| `deadline_raw` | Deadline as expressed in the source | `by Friday`, `end of month` |
-| `deadline_normalized_utc` | Deadline in ISO 8601 UTC | `2024-01-19T23:59:59Z` |
+| `deadline_expression` | Deadline as expressed in the source | `by Friday`, `end of month` |
+| `due_condition.deadline` | Deadline in ISO 8601 UTC | `2024-01-19T23:59:59Z` |
 | `confidence` | Extraction confidence (0–1) | `0.97` |
 | `state` | Current lifecycle state | `OPEN`, `FULFILLED` |
 | `id` | Unique commitment ID | `cmt_abc123` |
@@ -32,8 +32,11 @@ Extracted commitment:
   "action": "get",
   "object": "the contract draft",
   "recipient": "you",
-  "deadline_raw": "by Thursday EOD",
-  "deadline_normalized_utc": "2024-01-18T23:59:59Z",
+  "deadline_expression": "by Thursday EOD",
+  "due_condition": {
+    "type": "time",
+    "deadline": "2024-01-18T23:59:59Z"
+  },
   "confidence": 0.96,
   "state": "OPEN"
 }

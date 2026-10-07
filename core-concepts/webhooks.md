@@ -50,7 +50,10 @@ Use `"events": ["*"]` to subscribe to all event types.
     "object": "the report",
     "recipient": "you",
     "state": "OVERDUE",
-    "deadline_normalized_utc": "2024-01-19T23:59:59Z",
+    "due_condition": {
+      "type": "time",
+      "deadline": "2024-01-19T23:59:59Z"
+    },
     "source": "email",
     "source_id": "msg_001"
   }

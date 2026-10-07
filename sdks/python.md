@@ -35,7 +35,7 @@ result = client.commitments.track(
 )
 
 for commitment in result.commitments:
-    print(commitment.id, commitment.state, commitment.deadline_normalized_utc)
+    print(commitment.id, commitment.state, commitment.due_condition.deadline)
 # cmt_abc123 OPEN 2024-01-22T23:59:59Z
 ```
 
@@ -117,6 +117,5 @@ client = CogextClient(
     api_key="cg_live_YOUR_KEY",
     base_url="https://api.cogextai.com/api/v1",  # default
     timeout=30,       # seconds
-    max_retries=3,    # automatic retry on 5xx
 )
 ```

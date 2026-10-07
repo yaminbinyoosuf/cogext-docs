@@ -27,7 +27,7 @@ result = client.commitments.track(
 )
 
 for commitment in result.commitments:
-    print(commitment.id, commitment.state, commitment.deadline_normalized_utc)
+    print(commitment.id, commitment.state, commitment.due_condition.deadline)
 ```
 
 ## Get a commitment

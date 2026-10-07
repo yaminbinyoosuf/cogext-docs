@@ -41,7 +41,10 @@ curl "https://api.cogextai.com/api/v1/commitments?state=OVERDUE&limit=20" \
       "object": "the report",
       "recipient": null,
       "state": "OVERDUE",
-      "deadline_normalized_utc": "2024-01-19T23:59:59Z",
+      "due_condition": {
+        "type": "time",
+        "deadline": "2024-01-19T23:59:59Z"
+      },
       "confidence": 0.97,
       "source": "email",
       "created_at": "2024-01-15T09:00:00Z"

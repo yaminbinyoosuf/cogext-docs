@@ -42,8 +42,11 @@ curl -X POST https://api.cogextai.com/api/v1/commitments/track \
       "action": "send",
       "object": "the report",
       "recipient": null,
-      "deadline_raw": "by Friday EOD",
-      "deadline_normalized_utc": "2024-01-19T23:59:59Z",
+      "deadline_expression": "by Friday EOD",
+      "due_condition": {
+        "type": "time",
+        "deadline": "2024-01-19T23:59:59Z"
+      },
       "confidence": 0.97,
       "shape": "external_side_effect",
       "risk_score": 0.42,
@@ -67,8 +70,8 @@ curl -X POST https://api.cogextai.com/api/v1/commitments/track \
 | `action` | string | The verb extracted — what must happen |
 | `object` | string | What the action is applied to |
 | `recipient` | string or null | Who receives the outcome, if specified |
-| `deadline_raw` | string | Deadline as stated in the text |
-| `deadline_normalized_utc` | string | Deadline resolved to UTC ISO 8601 |
+| `deadline_expression` | string | Deadline as stated in the text |
+| `due_condition.deadline` | string | Deadline resolved to UTC ISO 8601 |
 | `confidence` | float | Extraction confidence, 0.0 to 1.0 |
 | `shape` | string | `external_side_effect` or `logged_intent` — see below |
 | `risk_score` | float | Risk heuristic across 5 factors, 0.0 to 1.0 |

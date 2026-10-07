@@ -30,8 +30,11 @@ curl -X POST https://api.cogextai.com/api/v1/commitments/track \
       "action": "send",
       "object": "the report",
       "recipient": "you",
-      "deadline_raw": "by Friday",
-      "deadline_normalized_utc": "2024-01-19T23:59:59Z",
+      "deadline_expression": "by Friday",
+      "due_condition": {
+        "type": "time",
+        "deadline": "2024-01-19T23:59:59Z"
+      },
       "confidence": 0.97,
       "state": "OPEN"
     }
